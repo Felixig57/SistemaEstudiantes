@@ -262,6 +262,7 @@
             this.txtTelefono.Text = "Ingrese telefono";
             this.txtTelefono.TextChanged += new System.EventHandler(this.txtTelefono_TextChanged);
             this.txtTelefono.Enter += new System.EventHandler(this.txtTelefono_Enter);
+            this.txtTelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTelefono_KeyPress);
             this.txtTelefono.Leave += new System.EventHandler(this.txtTelefono_Leave);
             // 
             // txtDireccion
@@ -290,6 +291,7 @@
             this.txtApellidoMaterno.Text = "Ingrese apellido materno";
             this.txtApellidoMaterno.TextChanged += new System.EventHandler(this.txtApellidoMaterno_TextChanged);
             this.txtApellidoMaterno.Enter += new System.EventHandler(this.txtApellidoMaterno_Enter);
+            this.txtApellidoMaterno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtApellidoMaterno_KeyPress);
             this.txtApellidoMaterno.Leave += new System.EventHandler(this.txtApellidoMaterno_Leave);
             // 
             // txtApellidoPaterno
@@ -303,6 +305,7 @@
             this.txtApellidoPaterno.Text = "Ingrese apellido paterno";
             this.txtApellidoPaterno.TextChanged += new System.EventHandler(this.txtApellidoPaterno_TextChanged);
             this.txtApellidoPaterno.Enter += new System.EventHandler(this.txtApellidoPaterno_Enter);
+            this.txtApellidoPaterno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtApellidoPaterno_KeyPress);
             this.txtApellidoPaterno.Leave += new System.EventHandler(this.txtApellidoPaterno_Leave);
             // 
             // txtNombre
@@ -318,6 +321,7 @@
             this.txtNombre.Text = "Ingrese su nombre aqui";
             this.txtNombre.TextChanged += new System.EventHandler(this.txtNombre_TextChanged);
             this.txtNombre.Enter += new System.EventHandler(this.txtNombre_Enter);
+            this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
             this.txtNombre.Leave += new System.EventHandler(this.txtNombre_Leave);
             // 
             // txtId
@@ -331,6 +335,7 @@
             this.txtId.Text = "Ingrese id";
             this.txtId.TextChanged += new System.EventHandler(this.txtId_TextChanged);
             this.txtId.Enter += new System.EventHandler(this.txtId_Enter);
+            this.txtId.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtId_KeyPress);
             this.txtId.Leave += new System.EventHandler(this.txtId_Leave);
             // 
             // lblCorreo

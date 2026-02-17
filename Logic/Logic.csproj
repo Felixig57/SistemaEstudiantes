@@ -42,6 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Biblioteca\Library.cs" />
+    <Compile Include="Biblioteca\TextField.cs" />
     <Compile Include="Biblioteca\UploadFile.cs" />
     <Compile Include="LogicaEstudiante.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

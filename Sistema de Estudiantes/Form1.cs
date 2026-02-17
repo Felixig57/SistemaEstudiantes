@@ -1,4 +1,5 @@
 ﻿using Logic;
+using Logic.Biblioteca;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -10,11 +11,15 @@ namespace Sistema_de_Estudiantes
     {
         //instanciar la clase de logica de negocio para validar los campos vacios  
         private LogicaEstudiante logicaEstudiante = new LogicaEstudiante();
+        private TextField objTxt = new TextField();
         public frmRegistroEstudiantes()
         {
             InitializeComponent();
         }
+
+
         #region Codigo de eventos
+        #endregion
 
         private void groupBox1_Enter(object sender, EventArgs e)
         {
@@ -30,7 +35,7 @@ namespace Sistema_de_Estudiantes
         {
 
         }
-
+        #region eventos changed
         private void txtId_TextChanged(object sender, EventArgs e)
         {
             //condicion para advertencia en los lbl
@@ -43,37 +48,86 @@ namespace Sistema_de_Estudiantes
                 lblId.ForeColor = Color.Green;
             }
         }
+        
 
         private void txtApellidoPaterno_TextChanged(object sender, EventArgs e)
         {
-
+            if(txtApellidoPaterno.Text.Equals("") || txtApellidoPaterno.Text.Equals("Ingrese apellido paterno"))
+            {
+                lblaPaterno.ForeColor = Color.Red;
+            }
+            else
+            {
+                lblaPaterno.ForeColor = Color.Green;
+            }
         }
 
         private void txtApellidoMaterno_TextChanged(object sender, EventArgs e)
         {
+            if(txtApellidoMaterno.Text.Equals("") || txtApellidoMaterno.Text.Equals("Ingrese apellido materno"))
+            {
+                lblaMaterno.ForeColor = Color.Red;
+            }
+            else
+            {
+                lblaMaterno.ForeColor = Color.Green;
+            }
 
         }
 
         private void txtTelefono_TextChanged(object sender, EventArgs e)
         {
-
+            if(txtTelefono.Text.Equals("") || txtTelefono.Text.Equals("Ingrese telefono"))
+            {
+                lblTelefono.ForeColor = Color.Red;
+            }
+            else
+            {
+                lblTelefono.ForeColor = Color.Green;
+            }
         }
 
         private void txtNombre_TextChanged(object sender, EventArgs e)
         {
+            if(txtNombre.Text.Equals("") || txtNombre.Text.Equals("Ingrese su nombre aqui"))
+            {
+                lblNombre.ForeColor = Color.Red;
+            }
+            else
+            {
+                lblNombre.ForeColor = Color.Green;
+            }
 
         }
 
         private void txtDireccion_TextChanged(object sender, EventArgs e)
         {
-
+            if(txtDireccion.Text.Equals("") || txtDireccion.Text.Equals("Ingrese direccion"))
+            {
+                lblDireccion.ForeColor = Color.Red;
+            }
+            else
+            {
+                lblDireccion.ForeColor = Color.Green;
+            }
         }
 
         private void txtCorreo_TextChanged(object sender, EventArgs e)
         {
-
+            if(txtCorreo.Text.Equals("") || txtCorreo.Text.Equals("Ingrese correo"))
+            {
+                lblCorreo.ForeColor = Color.Red;
+            }
+            else
+            {
+                lblCorreo.ForeColor = Color.Green;
+            }
         }
         #endregion
+
+
+
+
 
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -275,9 +329,36 @@ namespace Sistema_de_Estudiantes
         }
         #endregion
 
+
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            logicaEstudiante.CargarImagen(pictureBox1);
+            logicaEstudiante.uploadFile.CargarImagen(pictureBox1);
+        }
+        #region Eventso key press
+        #endregion
+        private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            logicaEstudiante.textField.Solo_Letras(e);
+        }
+
+        private void txtApellidoPaterno_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            logicaEstudiante.textField.Solo_Letras(e);
+        }
+
+        private void txtApellidoMaterno_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            logicaEstudiante.textField.Solo_Letras(e);
+        }
+
+        private void txtId_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            logicaEstudiante.textField.Solo_Numeros(e);
+        }
+
+        private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            logicaEstudiante.textField.Solo_Numeros(e);
         }
     }
 }

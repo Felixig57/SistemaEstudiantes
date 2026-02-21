@@ -1,20 +1,37 @@
 ﻿using Logic;
 using Logic.Biblioteca;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 namespace Sistema_de_Estudiantes
 {
     public partial class frmRegistroEstudiantes : Form
-   
+        
 
     {
         //instanciar la clase de logica de negocio para validar los campos vacios  
-        private LogicaEstudiante logicaEstudiante = new LogicaEstudiante();
-        private TextField objTxt = new TextField();
+        LogicaEstudiante logicaEstudiante;
+
         public frmRegistroEstudiantes()
         {
             InitializeComponent();
+            //inicializar los componentes del formulario
+
+            //lista que va guardar a los estudiantes
+            List<TextBox> listaAlumnos = new List<TextBox>();
+            listaAlumnos.Add(txtId);// 0
+            listaAlumnos.Add(txtNombre);//1
+            listaAlumnos.Add(txtApellidoPaterno);//2
+            listaAlumnos.Add(txtApellidoMaterno);//3
+            listaAlumnos.Add(txtDireccion);//4
+            listaAlumnos.Add(txtTelefono);//5
+            listaAlumnos.Add(txtCorreo);//6
+
+            logicaEstudiante = new LogicaEstudiante(listaAlumnos);
+
+            
+            
         }
 
 
@@ -39,7 +56,7 @@ namespace Sistema_de_Estudiantes
         private void txtId_TextChanged(object sender, EventArgs e)
         {
             //condicion para advertencia en los lbl
-            if (txtId.Text.Equals("") || txtId.Text.Equals("Ingrese id") )
+            if (txtId.Text.Equals("") || txtId.Text.Equals("Ingrese id"))
             {
                 lblId.ForeColor = Color.Red;
             }
@@ -48,11 +65,11 @@ namespace Sistema_de_Estudiantes
                 lblId.ForeColor = Color.Green;
             }
         }
-        
+
 
         private void txtApellidoPaterno_TextChanged(object sender, EventArgs e)
         {
-            if(txtApellidoPaterno.Text.Equals("") || txtApellidoPaterno.Text.Equals("Ingrese apellido paterno"))
+            if (txtApellidoPaterno.Text.Equals("") || txtApellidoPaterno.Text.Equals("Ingrese apellido paterno"))
             {
                 lblaPaterno.ForeColor = Color.Red;
             }
@@ -64,7 +81,7 @@ namespace Sistema_de_Estudiantes
 
         private void txtApellidoMaterno_TextChanged(object sender, EventArgs e)
         {
-            if(txtApellidoMaterno.Text.Equals("") || txtApellidoMaterno.Text.Equals("Ingrese apellido materno"))
+            if (txtApellidoMaterno.Text.Equals("") || txtApellidoMaterno.Text.Equals("Ingrese apellido materno"))
             {
                 lblaMaterno.ForeColor = Color.Red;
             }
@@ -77,7 +94,7 @@ namespace Sistema_de_Estudiantes
 
         private void txtTelefono_TextChanged(object sender, EventArgs e)
         {
-            if(txtTelefono.Text.Equals("") || txtTelefono.Text.Equals("Ingrese telefono"))
+            if (txtTelefono.Text.Equals("") || txtTelefono.Text.Equals("Ingrese telefono"))
             {
                 lblTelefono.ForeColor = Color.Red;
             }
@@ -89,7 +106,7 @@ namespace Sistema_de_Estudiantes
 
         private void txtNombre_TextChanged(object sender, EventArgs e)
         {
-            if(txtNombre.Text.Equals("") || txtNombre.Text.Equals("Ingrese su nombre aqui"))
+            if (txtNombre.Text.Equals("") || txtNombre.Text.Equals("Ingrese su nombre aqui"))
             {
                 lblNombre.ForeColor = Color.Red;
             }
@@ -102,7 +119,7 @@ namespace Sistema_de_Estudiantes
 
         private void txtDireccion_TextChanged(object sender, EventArgs e)
         {
-            if(txtDireccion.Text.Equals("") || txtDireccion.Text.Equals("Ingrese direccion"))
+            if (txtDireccion.Text.Equals("") || txtDireccion.Text.Equals("Ingrese direccion"))
             {
                 lblDireccion.ForeColor = Color.Red;
             }
@@ -114,7 +131,7 @@ namespace Sistema_de_Estudiantes
 
         private void txtCorreo_TextChanged(object sender, EventArgs e)
         {
-            if(txtCorreo.Text.Equals("") || txtCorreo.Text.Equals("Ingrese correo"))
+            if (txtCorreo.Text.Equals("") || txtCorreo.Text.Equals("Ingrese correo"))
             {
                 lblCorreo.ForeColor = Color.Red;
             }
@@ -132,7 +149,7 @@ namespace Sistema_de_Estudiantes
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            //llamar ala funcion que recibe los valores de las cajas de texto
+            /*//llamar ala funcion que recibe los valores de las cajas de texto
             RecibirValoresCajas();
             //llamar a la funcion que valida los campos vacios
             ValidarCamposVacios(RecibirValoresCajas());
@@ -144,7 +161,9 @@ namespace Sistema_de_Estudiantes
             //llamar a la funcion que guarda los datos del estudiante en la base de datos
             GuardarEstudianteBD(RecibirValoresCajas());
             //llamar a la funcion que limpia las cajas de texto
-            LimpiarCampos();
+            LimpiarCampos();*/
+
+            logicaEstudiante.ValidarFormulario();
 
         }
         #region Funciones privada
@@ -174,7 +193,7 @@ namespace Sistema_de_Estudiantes
                 MessageBox.Show("Todos los campos deben ser llenados", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-           
+
             return true;//devolver true si todos los campos estan llenos
         }
         //funcion que manda los datos del estudiante a la base de datos
@@ -201,131 +220,74 @@ namespace Sistema_de_Estudiantes
 
         private void txtId_Enter(object sender, EventArgs e)
         {
-            if (txtId.Text == "Ingrese id")
-            {
-                txtId.Text = "";
-                txtId.ForeColor = Color.Black;
-            }
+           
         }
 
         private void txtId_Leave(object sender, EventArgs e)
         {
-            if (txtId.Text == "")
-            {
-                txtId.Text = "Ingrese id";
-                txtId.ForeColor = Color.Gray;
-            }
+            
         }
 
-    
+
 
         private void txtNombre_Enter(object sender, EventArgs e)
         {
-            if (txtNombre.Text == "Ingrese su nombre aqui")
-            {
-                txtNombre.Text = "";
-                txtNombre.ForeColor = Color.Black;
-            }
+           
         }
 
         private void txtNombre_Leave(object sender, EventArgs e)
         {
-            if (txtNombre.Text == "")
-            {
-                txtNombre.Text = "Ingrese su nombre aqui";
-                txtNombre.ForeColor = Color.Gray;
-            }
+           
         }
 
         private void txtApellidoPaterno_Enter(object sender, EventArgs e)
         {
-            if (txtApellidoPaterno.Text == "Ingrese apellido paterno")
-            {
-                txtApellidoPaterno.Text = "";
-                txtApellidoPaterno.ForeColor = Color.Black;
-            }
+            
         }
 
         private void txtApellidoPaterno_Leave(object sender, EventArgs e)
         {
-            if (txtApellidoPaterno.Text == "")
-            {
-                txtApellidoPaterno.Text = "Ingrese apellido paterno";
-                txtApellidoPaterno.ForeColor = Color.Gray;
-            }
+            
         }
 
         private void txtApellidoMaterno_Enter(object sender, EventArgs e)
         {
-            if(txtApellidoMaterno.Text == "Ingrese apellido materno")
-            {
-                txtApellidoMaterno.Text = "";
-                txtApellidoMaterno.ForeColor = Color.Black;
-
-            }
+            
         }
 
         private void txtApellidoMaterno_Leave(object sender, EventArgs e)
         {
-            if(txtApellidoMaterno.Text == "")
-            {
-                txtApellidoMaterno.Text = "Ingrese apellido materno";
-                txtApellidoMaterno.ForeColor = Color.Gray;
-            }
+            
         }
 
         private void txtDireccion_Enter(object sender, EventArgs e)
         {
-            if(txtDireccion.Text == "Ingrese direccion")
-            {
-                txtDireccion.Text = "";
-                txtDireccion.ForeColor = Color.Black;
-            }
+           
         }
 
         private void txtDireccion_Leave(object sender, EventArgs e)
         {
-            if(txtDireccion.Text == "")
-            {
-                txtDireccion.Text = "Ingrese direccion";
-                txtDireccion.ForeColor = Color.Gray;
-            }
+          
         }
 
         private void txtTelefono_Enter(object sender, EventArgs e)
         {
-            if(txtTelefono.Text == "Ingrese telefono")
-            {
-                txtTelefono.Text = "";
-                txtTelefono.ForeColor = Color.Black;
-            }
+          
         }
 
         private void txtTelefono_Leave(object sender, EventArgs e)
         {
-            if(txtTelefono.Text == "")
-            {
-                txtTelefono.Text = "Ingrese telefono";
-                txtTelefono.ForeColor = Color.Gray;
-            }
+            
         }
 
         private void txtCorreo_Enter(object sender, EventArgs e)
         {
-            if(txtCorreo.Text == "Ingrese correo")
-            {
-                txtCorreo.Text = "";
-                txtCorreo.ForeColor = Color.Black;
-            }
+           
         }
 
         private void txtCorreo_Leave(object sender, EventArgs e)
         {
-            if (txtCorreo.Text == "")
-            {
-                txtCorreo.Text = "Ingrese correo";
-                txtCorreo.ForeColor = Color.Gray;
-            }
+            
         }
         #endregion
 
@@ -358,7 +320,11 @@ namespace Sistema_de_Estudiantes
 
         private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
         {
-            logicaEstudiante.textField.Solo_Numeros(e);
+            logicaEstudiante.textField.ValidarNumerosTelefonicos(e);
         }
-    }
-}
+        private void txtCorreo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            logicaEstudiante.textField.ValidarCorreoElectronico(e);
+        }
+    }//cierres de la clase
+}//cierres de la clase 

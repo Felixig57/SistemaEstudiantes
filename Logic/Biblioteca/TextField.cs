@@ -25,10 +25,41 @@ namespace Logic.Biblioteca
         {
             //validacion para permitir solo numeros y el uso de la tecla de retroceso
             if (!char.IsDigit(e.KeyChar) && 
-                e.KeyChar != '\b')
+                e.KeyChar != '\b'      )
             {
                 e.Handled = true;
             }
         }
+ 
+       public void ValidarNumerosTelefonicos(KeyPressEventArgs e)
+        {
+            if (!char.IsNumber(e.KeyChar) &&
+                e.KeyChar != '\b'        &&
+                e.KeyChar != '+'         &&
+                e.KeyChar != '('         &&
+                e.KeyChar != ')'         &&
+                e.KeyChar != '-'         &&
+                e.KeyChar != ' ')
+            {
+                MessageBox.Show("Solo se admite el formato para telefonos");
+                e.Handled = true;
+            }
+              
+        }
+        //vamos a permitir @,.,_ numeros y letras
+        public void ValidarCorreoElectronico(KeyPressEventArgs e)
+        {
+            if (!char.IsLetterOrDigit(e.KeyChar) &&
+                    e.KeyChar != '.' &&
+                    e.KeyChar != '_' &&
+                    e.KeyChar != '@' &&
+                    e.KeyChar != '\b')
+            {
+                //no permitir la captura si el campo recibe esa diferencia 
+                e.Handled = true;
+
+            }
+        }
+
     }
 }

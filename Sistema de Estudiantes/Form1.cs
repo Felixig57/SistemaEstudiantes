@@ -220,12 +220,21 @@ namespace Sistema_de_Estudiantes
 
         private void txtId_Enter(object sender, EventArgs e)
         {
-           
+           /*if(txtId.Text.Equals("Ingrese ID !!"))
+            {
+                txtId.Text = "";
+                txtId.ForeColor = Color.Black;
+            }*/
         }
 
         private void txtId_Leave(object sender, EventArgs e)
         {
-            
+            /*if (txtId.Text.Equals(""))
+            {
+                txtId.Text = "Ingrese ID !!";
+                txtId.ForeColor = Color.Gray;
+            }*/
+
         }
 
 
@@ -322,7 +331,7 @@ namespace Sistema_de_Estudiantes
         {
             logicaEstudiante.textField.ValidarNumerosTelefonicos(e);
         }
-        private void txtCorreo_KeyPress(object sender, KeyPressEventArgs e)
+        public void txtCorreo_KeyPress(object sender, KeyPressEventArgs e)
         {
             logicaEstudiante.textField.ValidarCorreoElectronico(e);
         }

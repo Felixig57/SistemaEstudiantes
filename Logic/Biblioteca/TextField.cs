@@ -24,8 +24,8 @@ namespace Logic.Biblioteca
         public void Solo_Numeros(KeyPressEventArgs e)
         {
             //validacion para permitir solo numeros y el uso de la tecla de retroceso
-            if (!char.IsDigit(e.KeyChar) && 
-                e.KeyChar != '\b'      )
+            if (!char.IsDigit(e.KeyChar) &&
+                e.KeyChar != '\b' )
             {
                 e.Handled = true;
             }
@@ -33,7 +33,7 @@ namespace Logic.Biblioteca
  
        public void ValidarNumerosTelefonicos(KeyPressEventArgs e)
         {
-            if (!char.IsNumber(e.KeyChar) &&
+            if (!char.IsDigit(e.KeyChar) &&
                 e.KeyChar != '\b'        &&
                 e.KeyChar != '+'         &&
                 e.KeyChar != '('         &&

@@ -12,6 +12,7 @@ namespace Sistema_de_Estudiantes
     {
         //instanciar la clase de logica de negocio para validar los campos vacios  
         LogicaEstudiante logicaEstudiante;
+        //
 
         public frmRegistroEstudiantes()
         {
@@ -27,7 +28,7 @@ namespace Sistema_de_Estudiantes
             listaAlumnos.Add(txtDireccion);//4
             listaAlumnos.Add(txtTelefono);//5
             listaAlumnos.Add(txtCorreo);//6
-           /* //lista para accion de los label, por si hay un cambio
+           //lista para accion de los label, por si hay un cambio
             List<Label> listaLabels = new List<Label>();
             listaLabels.Add(lblId);
             listaLabels.Add(lblNombre);
@@ -35,9 +36,11 @@ namespace Sistema_de_Estudiantes
             listaLabels.Add(lblaMaterno);
             listaLabels.Add(lblDireccion);
             listaLabels.Add(lblTelefono);
-            listaLabels.Add(lblCorreo);*/
+            listaLabels.Add(lblCorreo);
+            ///array de objetos 
+            Object[] objects = { pictureBox1 };//objeto que espera desde la carga del archivo
 
-            logicaEstudiante = new LogicaEstudiante(listaAlumnos);//pasar el nuevo parametro cuando senado algo nuevo en el constructor
+            logicaEstudiante = new LogicaEstudiante(listaAlumnos, listaLabels, objects);//pasar el nuevo parametro cuando senado algo nuevo en el constructor
 
             
             
@@ -315,7 +318,9 @@ namespace Sistema_de_Estudiantes
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             logicaEstudiante.uploadFile.CargarImagen(pictureBox1);
+
         }
+
         #region Eventso key press
         #endregion
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)

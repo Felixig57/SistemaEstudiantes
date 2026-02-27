@@ -17,10 +17,14 @@ namespace Logic
         //crear un constructor para inicializar la clase
         private List<TextBox> listaAlumnos;
         private List<Label> listaLabels;
+        PictureBox pictureBox1;
 
-        public LogicaEstudiante(List<TextBox> listaAlumnos)//, list<Label> ListaLabels
+
+        public LogicaEstudiante(List<TextBox> listaAlumnos, List<Label> listaLabels, Object[] objects)//, list<Label> ListaLabels
         {
-            this.listaAlumnos = listaAlumnos;
+            this.listaAlumnos = listaAlumnos;//argymento asignado
+            this.listaLabels = listaLabels;
+            this.pictureBox1 = (PictureBox)objects[0];
         }
         public void ValidarFormulario()
         {
@@ -170,6 +174,7 @@ namespace Logic
             //validacion con labels
             if (listaAlumnos[0].Text == string.Empty)
             {
+                MessageBox.Show("Caja de texto vacia");
                 listaAlumnos[0].Text = "Ingrese ID !!";
                 listaAlumnos[0].Focus();
             }
@@ -177,6 +182,7 @@ namespace Logic
             {
                 if (listaAlumnos[1].Text == string.Empty)
                 {
+                    MessageBox.Show("nombre vacio");
                     listaAlumnos[1].Text = "Ingrese Nombre ";
                     listaAlumnos[1].Focus();
 
@@ -185,6 +191,7 @@ namespace Logic
                 {
                     if (listaAlumnos[2].Text == string.Empty)
                     {
+                        MessageBox.Show("Apellido paterno vacio");
                         listaAlumnos[2].Text = "Ingrese Apellido Paterno";
                         listaAlumnos[2].Focus();
                     }
@@ -192,6 +199,7 @@ namespace Logic
                     {
                         if (listaAlumnos[3].Text == string.Empty)
                         {
+                            MessageBox.Show("apellido materno vacio");
                             listaAlumnos[3].Text = "Ingresse Apellido Materno";
                             listaAlumnos[3].Focus();
                         }
@@ -199,6 +207,7 @@ namespace Logic
                         {
                             if (listaAlumnos[4].Text == string.Empty)
                             {
+                                MessageBox.Show("direccion vacio");
                                 listaAlumnos[4].Text = "Ingrese Direccion";
                                 listaAlumnos[4].Focus();
                             }
@@ -206,6 +215,7 @@ namespace Logic
                             {
                                 if (listaAlumnos[5].Text == string.Empty)
                                 {
+                                    MessageBox.Show("telefono vacio");
                                     listaAlumnos[5].Text = "Ingrese Telefono";
                                     listaAlumnos[5].Focus();
                                 }
@@ -213,8 +223,16 @@ namespace Logic
                                 {
                                     if (listaAlumnos[6].Text == string.Empty)
                                     {
+                                        MessageBox.Show("Correo vacio");
                                         listaAlumnos[6].Text = "Ingrese Correo";
                                         listaAlumnos[6].Focus();
+                                    }
+                                    else
+                                    {
+                                        //llamar al metodo publico que tenemos
+                                        //declarar variable para que reciba el metodo
+                                        //var imgByte = UploadFile.ConvertirImg_Byte(pictureBox.Image);//modificar para usar el metodo de conversion
+                                        var img = uploadFile.ConvertirImg_Byte(pictureBox1.Image);
                                     }
 
                                 }
@@ -225,7 +243,8 @@ namespace Logic
             }
 
 
-        }
+        }//funcion de validar formulario
+
       
     }
 }

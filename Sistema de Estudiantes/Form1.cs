@@ -27,8 +27,17 @@ namespace Sistema_de_Estudiantes
             listaAlumnos.Add(txtDireccion);//4
             listaAlumnos.Add(txtTelefono);//5
             listaAlumnos.Add(txtCorreo);//6
+           /* //lista para accion de los label, por si hay un cambio
+            List<Label> listaLabels = new List<Label>();
+            listaLabels.Add(lblId);
+            listaLabels.Add(lblNombre);
+            listaLabels.Add(lblaPaterno);
+            listaLabels.Add(lblaMaterno);
+            listaLabels.Add(lblDireccion);
+            listaLabels.Add(lblTelefono);
+            listaLabels.Add(lblCorreo);*/
 
-            logicaEstudiante = new LogicaEstudiante(listaAlumnos);
+            logicaEstudiante = new LogicaEstudiante(listaAlumnos);//pasar el nuevo parametro cuando senado algo nuevo en el constructor
 
             
             
@@ -63,6 +72,8 @@ namespace Sistema_de_Estudiantes
             else
             {
                 lblId.ForeColor = Color.Green;
+                //cambiar el label a como inicia por que se modifica al realizar un dato erroneo
+               // lblId.Text = "ID";
             }
         }
 

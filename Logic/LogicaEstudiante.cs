@@ -16,8 +16,9 @@ namespace Logic
 
         //crear un constructor para inicializar la clase
         private List<TextBox> listaAlumnos;
+        private List<Label> listaLabels;
 
-        public LogicaEstudiante(List<TextBox> listaAlumnos)
+        public LogicaEstudiante(List<TextBox> listaAlumnos)//, list<Label> ListaLabels
         {
             this.listaAlumnos = listaAlumnos;
         }
@@ -110,7 +111,8 @@ namespace Logic
             MessageBox.Show("Formulario Completo");
             LimpiarFormulario();
             */
-            //validacion con campos if
+            //validacion con campos de texto
+            /*
             if (listaAlumnos[0].Text == string.Empty) {
                 listaAlumnos[0].Text = "Ingrese ID !!";
                 listaAlumnos[0].Focus();
@@ -163,7 +165,65 @@ namespace Logic
                         }
                     }
                 }
+            }*/
+
+            //validacion con labels
+            if (listaAlumnos[0].Text == string.Empty)
+            {
+                listaAlumnos[0].Text = "Ingrese ID !!";
+                listaAlumnos[0].Focus();
             }
+            else
+            {
+                if (listaAlumnos[1].Text == string.Empty)
+                {
+                    listaAlumnos[1].Text = "Ingrese Nombre ";
+                    listaAlumnos[1].Focus();
+
+                }
+                else
+                {
+                    if (listaAlumnos[2].Text == string.Empty)
+                    {
+                        listaAlumnos[2].Text = "Ingrese Apellido Paterno";
+                        listaAlumnos[2].Focus();
+                    }
+                    else
+                    {
+                        if (listaAlumnos[3].Text == string.Empty)
+                        {
+                            listaAlumnos[3].Text = "Ingresse Apellido Materno";
+                            listaAlumnos[3].Focus();
+                        }
+                        else
+                        {
+                            if (listaAlumnos[4].Text == string.Empty)
+                            {
+                                listaAlumnos[4].Text = "Ingrese Direccion";
+                                listaAlumnos[4].Focus();
+                            }
+                            else
+                            {
+                                if (listaAlumnos[5].Text == string.Empty)
+                                {
+                                    listaAlumnos[5].Text = "Ingrese Telefono";
+                                    listaAlumnos[5].Focus();
+                                }
+                                else
+                                {
+                                    if (listaAlumnos[6].Text == string.Empty)
+                                    {
+                                        listaAlumnos[6].Text = "Ingrese Correo";
+                                        listaAlumnos[6].Focus();
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
 
         }
       

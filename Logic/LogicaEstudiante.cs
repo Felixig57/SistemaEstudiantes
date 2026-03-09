@@ -1,4 +1,6 @@
-﻿using Logic.Biblioteca;
+﻿using Datos;
+using LinqToDB;
+using Logic.Biblioteca;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -233,6 +235,23 @@ namespace Logic
                                         //declarar variable para que reciba el metodo
                                         //var imgByte = UploadFile.ConvertirImg_Byte(pictureBox.Image);//modificar para usar el metodo de conversion
                                         var img = uploadFile.ConvertirImg_Byte(pictureBox1.Image);
+                                        //cargar un objeto lleno con los datos necesarios
+                                        //llamar al objeto que contiene la  conexion
+                                        Conexion conexion = new Conexion();//ocupa referencia de la capa datos 
+                                        conexion.Insert(new Estudiante 
+                                            {
+                                            Id = int.Parse(listaAlumnos[0].Text),
+                                            Nombre = listaAlumnos[1].Text,
+                                            ApellidoPaterno = listaAlumnos[2].Text,
+                                            ApellidoMaterno = listaAlumnos[3].Text,
+                                            Direccion = listaAlumnos[4].Text,
+                                            Telefono = listaAlumnos[5].Text,
+                                            Correo = listaAlumnos[6].Text
+                                            }
+                                            );
+                                        //limpar los campos despues de la inserccion
+                                        LimpiarCampos();
+
                                     }
 
                                 }
@@ -244,7 +263,13 @@ namespace Logic
 
 
         }//funcion de validar formulario
-
+        public void LimpiarCampos()
+        {
+            for(int i =0; i <= 6; i++)
+            {
+                listaAlumnos[i].Clear();
+            }
+        }
       
     }
 }

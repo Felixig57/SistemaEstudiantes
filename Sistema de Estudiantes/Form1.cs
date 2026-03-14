@@ -163,22 +163,7 @@ namespace Sistema_de_Estudiantes
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            /*//llamar ala funcion que recibe los valores de las cajas de texto
-            RecibirValoresCajas();
-            //llamar a la funcion que valida los campos vacios
-            ValidarCamposVacios(RecibirValoresCajas());
-            if (!ValidarCamposVacios(RecibirValoresCajas()))
-            {
-                return;//si hay campos vacios, salir de la funcion
-            }
-            MessageBox.Show("Datos del Estudiante Guardados");
-            //llamar a la funcion que guarda los datos del estudiante en la base de datos
-            GuardarEstudianteBD(RecibirValoresCajas());
-            //llamar a la funcion que limpia las cajas de texto
-            LimpiarCampos();*/
-
             logicaEstudiante.ValidarFormulario();
-
         }
         #region Funciones privada
         //funcion para recibir los valores de las cajas de texto

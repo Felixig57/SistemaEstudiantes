@@ -233,8 +233,10 @@ namespace Logic
                                     {
                                         //llamar al metodo publico que tenemos
                                         //declarar variable para que reciba el metodo
+
                                         //var imgByte = UploadFile.ConvertirImg_Byte(pictureBox.Image);//modificar para usar el metodo de conversion
                                         var img = uploadFile.ConvertirImg_Byte(pictureBox1.Image);
+
                                         //cargar un objeto lleno con los datos necesarios
                                         //llamar al objeto que contiene la  conexion
                                         Conexion conexion = new Conexion();//ocupa referencia de la capa datos 
@@ -246,11 +248,15 @@ namespace Logic
                                             ApellidoMaterno = listaAlumnos[3].Text,
                                             Direccion = listaAlumnos[4].Text,
                                             Telefono = listaAlumnos[5].Text,
-                                            Correo = listaAlumnos[6].Text
-                                            }
+                                            Correo = listaAlumnos[6].Text,
+                                            Imagen = img
+                                        }
                                             );
                                         //limpar los campos despues de la inserccion
-                                        LimpiarCampos();
+                                     //   LimpiarCampos();
+                                        //volver a llamar a los focos
+                                        listaAlumnos[0].Focus();
+                                        MessageBox.Show("Registro exitoso ");
 
                                     }
 

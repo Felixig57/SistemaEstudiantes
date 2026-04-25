@@ -13,10 +13,12 @@ namespace Datos
     {
         //atributos con sus metodos 
         //actividades que corresponden al cierre del 2do elemento de competencia Read, Insert
+
         //avanze viernes 20 examen 27 de marzo, todos los conceptos que forman parte del CRUD
         //para el 3 de abril completar Avanze numero 2 diseño validacion, controles dgv, Read Create Insert y tambien para las imagenes
         //entrega etapa 2 inserccion y lectura de base de datos y mostrarlo en el dgv, e
-      //  [Column(Name = "Id")]
+       //data annnotation
+        [PrimaryKey]
         public int Id { get; set; }
 
        // [Column(Name = "Nombre")]
@@ -37,7 +39,7 @@ namespace Datos
        // [Column(Name = "Correo")]
         public string Correo { get; set; }
 
-        public Byte [] Imagen {  get; set; }//carga de la imagen
+        public byte [] Imagen {  get; set; }//carga de la imagen
 
     }
 }

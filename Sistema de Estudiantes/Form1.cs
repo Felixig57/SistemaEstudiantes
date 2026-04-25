@@ -18,7 +18,7 @@ namespace Sistema_de_Estudiantes
         {
             InitializeComponent();
             //inicializar los componentes del formulario
-
+        
             //lista que va guardar a los estudiantes
             List<TextBox> listaAlumnos = new List<TextBox>();
             listaAlumnos.Add(txtId);// 0
@@ -38,12 +38,12 @@ namespace Sistema_de_Estudiantes
             listaLabels.Add(lblTelefono);
             listaLabels.Add(lblCorreo);
             ///array de objetos 
-            Object[] objects = { pictureBox1 };//objeto que espera desde la carga del archivo
+            Object[] objects = { pictureBox1 , dataGridView1 };//objeto que espera desde la carga del archivo
 
             logicaEstudiante = new LogicaEstudiante(listaAlumnos, listaLabels, objects);//pasar el nuevo parametro cuando senado algo nuevo en el constructor
 
             
-            
+
         }
 
 
@@ -164,6 +164,8 @@ namespace Sistema_de_Estudiantes
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             logicaEstudiante.ValidarFormulario();
+            //desplegar en el dgv
+            logicaEstudiante.ListarEstudiantes();
         }
         #region Funciones privada
         //funcion para recibir los valores de las cajas de texto
@@ -335,6 +337,38 @@ namespace Sistema_de_Estudiantes
         public void txtCorreo_KeyPress(object sender, KeyPressEventArgs e)
         {
             logicaEstudiante.textField.ValidarCorreoElectronico(e);
+        }
+
+        private void lblDireccion_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //validacion
+            if(dataGridView1.Rows.Count > 0)
+            {
+                logicaEstudiante.getSeleccionEstudiante();
+            }
+        }
+        //seleccion 
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridView1.Rows.Count > 0)
+            {
+                logicaEstudiante.getSeleccionEstudiante();
+            }
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            logicaEstudiante.LimpiarCampos();
+        }
+
+        private void btnListar_Click(object sender, EventArgs e)
+        {
+            logicaEstudiante.ListarEstudiantes();
         }
     }//cierres de la clase
 }//cierres de la clase 

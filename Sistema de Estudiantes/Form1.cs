@@ -18,7 +18,7 @@ namespace Sistema_de_Estudiantes
         {
             InitializeComponent();
             //inicializar los componentes del formulario
-
+        
             //lista que va guardar a los estudiantes
             List<TextBox> listaAlumnos = new List<TextBox>();
             listaAlumnos.Add(txtId);// 0
@@ -38,12 +38,12 @@ namespace Sistema_de_Estudiantes
             listaLabels.Add(lblTelefono);
             listaLabels.Add(lblCorreo);
             ///array de objetos 
-            Object[] objects = { pictureBox1 };//objeto que espera desde la carga del archivo
+            Object[] objects = { pictureBox1 , dataGridView1 };//objeto que espera desde la carga del archivo
 
             logicaEstudiante = new LogicaEstudiante(listaAlumnos, listaLabels, objects);//pasar el nuevo parametro cuando senado algo nuevo en el constructor
 
             
-            
+
         }
 
 
@@ -163,22 +163,9 @@ namespace Sistema_de_Estudiantes
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            /*//llamar ala funcion que recibe los valores de las cajas de texto
-            RecibirValoresCajas();
-            //llamar a la funcion que valida los campos vacios
-            ValidarCamposVacios(RecibirValoresCajas());
-            if (!ValidarCamposVacios(RecibirValoresCajas()))
-            {
-                return;//si hay campos vacios, salir de la funcion
-            }
-            MessageBox.Show("Datos del Estudiante Guardados");
-            //llamar a la funcion que guarda los datos del estudiante en la base de datos
-            GuardarEstudianteBD(RecibirValoresCajas());
-            //llamar a la funcion que limpia las cajas de texto
-            LimpiarCampos();*/
-
             logicaEstudiante.ValidarFormulario();
-
+            //desplegar en el dgv
+            logicaEstudiante.ListarEstudiantes();
         }
         #region Funciones privada
         //funcion para recibir los valores de las cajas de texto
@@ -350,6 +337,38 @@ namespace Sistema_de_Estudiantes
         public void txtCorreo_KeyPress(object sender, KeyPressEventArgs e)
         {
             logicaEstudiante.textField.ValidarCorreoElectronico(e);
+        }
+
+        private void lblDireccion_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //validacion
+            if(dataGridView1.Rows.Count > 0)
+            {
+                logicaEstudiante.getSeleccionEstudiante();
+            }
+        }
+        //seleccion 
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridView1.Rows.Count > 0)
+            {
+                logicaEstudiante.getSeleccionEstudiante();
+            }
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            logicaEstudiante.LimpiarCampos();
+        }
+
+        private void btnListar_Click(object sender, EventArgs e)
+        {
+            logicaEstudiante.ListarEstudiantes();
         }
     }//cierres de la clase
 }//cierres de la clase 

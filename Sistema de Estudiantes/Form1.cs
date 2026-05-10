@@ -370,5 +370,15 @@ namespace Sistema_de_Estudiantes
         {
             logicaEstudiante.ListarEstudiantes();
         }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            logicaEstudiante.eliminarRegistro();
+        }
+
+        private void btnGuardar_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }//cierres de la clase
 }//cierres de la clase 

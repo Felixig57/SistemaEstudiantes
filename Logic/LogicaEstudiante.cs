@@ -292,11 +292,16 @@ namespace Logic
         }//funcion de validar formulario
         public void LimpiarCampos()
         {
-            accion = "Limpiar";
+            
             for(int i =0; i <= 6; i++)
             {
                 listaAlumnos[i].Clear();
             }
+            //imagen
+            pictureBox1.Image = null;
+
+            accion = "Insert";
+            IdEstudiante = 0;
         }
 
         //crear un metodo para la seleccion del estudiante
@@ -307,7 +312,7 @@ namespace Logic
             //aignar valores que se recogen del Id que vienen del DGV
             IdEstudiante = Convert.ToInt32( dataGridView.CurrentRow.Cells[0].Value);
             //aignar el contneido desde el dgv hacia las cajas de texto
-            listaAlumnos[0].Text = Convert.ToString(dataGridView.CurrentRow.Cells[0].Value );
+            listaAlumnos[0].Text = Convert.ToString(dataGridView.CurrentRow.Cells[0].Value);
             listaAlumnos[1].Text = Convert.ToString(dataGridView.CurrentRow.Cells[1].Value);
             listaAlumnos[2].Text = Convert.ToString(dataGridView.CurrentRow.Cells[2].Value);
             listaAlumnos[3].Text = Convert.ToString(dataGridView.CurrentRow.Cells[3].Value);
@@ -328,7 +333,41 @@ namespace Logic
                 
             }//
         }
-        //metodo para guardar y editar la informacion 
+        //Funcion para eliminar registros
+        public void eliminarRegistro()
+
+        {
+            //
+            var img = uploadFile.ConvertirImg_Byte(pictureBox1.Image);
+            Conexion conexion = new Conexion();
+            //declarar varibela para eliminar
+            var RegistroEliminar = conexion.GetTable<Estudiante>().FirstOrDefault(e => e.Id == IdEstudiante);
+            //evaluamos el registro
+            if (RegistroEliminar != null)
+            {
+                if (MessageBox.Show("Deseas eliminar","Eliminar",MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+//instancia al obj alumno
+                 Estudiante estudiante   = new Estudiante
+                 {
+                     Id = int.Parse(listaAlumnos[0].Text),
+                     Nombre = listaAlumnos[1].Text,
+                     ApellidoPaterno = listaAlumnos[2].Text,
+                     ApellidoMaterno = listaAlumnos[3].Text,
+                     Direccion = listaAlumnos[4].Text,
+                     Telefono = listaAlumnos[5].Text,
+                     Correo = listaAlumnos[6].Text,
+                     Imagen = img
+                 };
+                    //aplicamos la eliminacion
+                    conexion.Delete(RegistroEliminar);
+                    MessageBox.Show("Registro eliminado");
+                    ListarEstudiantes();
+
+                }
+            }
+        }
+        //metodo para guardar y editar la informacion y las funciones necesarias para el CRUD
         public void guardarEditar()
         {
             var img = uploadFile.ConvertirImg_Byte(pictureBox1.Image);
@@ -359,6 +398,7 @@ namespace Logic
                     //volver a llamar a los focos
                     listaAlumnos[0].Focus();
                     MessageBox.Show("Registro exitoso ");
+                    ListarEstudiantes();
                     break;
 
                 case "Update":
@@ -380,9 +420,11 @@ namespace Logic
                         };
                         conexion.Update(estudianteEditado);
                         MessageBox.Show("Alumno Editado");
+                        ListarEstudiantes();
 
                     }
-                     //cambiar el estatus de la variable accion, accion = "insert";
+                    //cambiar el estatus de la variable accion, accion = "insert";
+                    accion = "Insert";
                     break;
 
                 case "Limpiar":

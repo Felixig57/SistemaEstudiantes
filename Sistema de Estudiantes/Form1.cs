@@ -11,7 +11,7 @@ namespace Sistema_de_Estudiantes
 
     {
         //instanciar la clase de logica de negocio para validar los campos vacios  
-        LogicaEstudiante logicaEstudiante;
+        LogicaEstudiante logicaEstudiante;//referencia principal para poder llamar a todos los metodos
         //
 
         public frmRegistroEstudiantes()
@@ -379,6 +379,25 @@ namespace Sistema_de_Estudiantes
         private void btnGuardar_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtBuscar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            logicaEstudiante.textField.Solo_Numeros(e);
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            int IdABuscar = Convert.ToInt32(txtBuscar.Text);
+            logicaEstudiante.buscarEstudiante(IdABuscar);
+        }
+
+        private void btnBuscarPorNombre_Click(object sender, EventArgs e)
+        {
+            //delcarar el valor de busqueda
+            string buscarNombre = txtBuscarPorNombre.Text;
+            //llamar al metodo
+            logicaEstudiante.buscarEstudiantePorNombre(buscarNombre);
         }
     }//cierres de la clase
 }//cierres de la clase 

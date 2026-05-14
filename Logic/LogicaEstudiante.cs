@@ -75,150 +75,7 @@ namespace Logic
         }
         public void ValidarFormulario()
         {
-            /*if (listaAlumnos[0].Text == string.Empty ||
-                listaAlumnos[1].Text == string.Empty ||
-                listaAlumnos[2].Text == string.Empty ||
-                listaAlumnos[3].Text == string.Empty ||
-                listaAlumnos[4].Text == string.Empty ||
-                listaAlumnos[5].Text == string.Empty ||
-                listaAlumnos[6].Text == string.Empty
-                )
-            {
-                MessageBox.Show("el formulario no debe estar vacio");
-                listaAlumnos[0].Text = "Ingrese ID !!";
-                listaAlumnos[0].Focus();
-                listaAlumnos[1].Text = "Ingrese Nombre !!";
-                listaAlumnos[1].Focus();
-                listaAlumnos[2].Text = "Ingrese Apellido Paterno !!";
-                listaAlumnos[2].Focus();
-                listaAlumnos[3].Text = "Ingrese Apellido Materno !!";
-                listaAlumnos[3].Focus();
-                listaAlumnos[4].Text = "Ingrese Direccion !!";
-                listaAlumnos[4].Focus();
-                listaAlumnos[5].Text = "Ingrese Telefono !!";
-                listaAlumnos[5].Focus();
-                listaAlumnos[6].Text = "Ingrese Correo !!";
-                listaAlumnos[6].Focus();
 
-            }
-            else
-            {
-                MessageBox.Show("Formulario Validado Correctamente");
-
-            }*/
-            //validacin campo id
-            /*
-            if (listaAlumnos[0].Text == string.Empty)
-            {
-                MessageBox.Show("el formulario no puede quedar vacio");
-                listaAlumnos[0].Text = "Ingrese ID !!";
-                listaAlumnos[0].Focus();
-                return;
-            }
-            if (listaAlumnos[1].Text == string.Empty)
-            {
-                MessageBox.Show("el formulario no puede quedar vacio");
-                listaAlumnos[1].Text = "Ingrese Nombre !!";
-                listaAlumnos[1].Focus();
-                return;
-            }
-            if (listaAlumnos[2].Text == string.Empty)
-            {
-                MessageBox.Show("el formulario no puede quedar vacio");
-                listaAlumnos[2].Text = "Ingrese Apellido Paterno !!";
-                listaAlumnos[2].Focus();
-                return;
-            }
-            if (listaAlumnos[3].Text == string.Empty)
-            {
-                MessageBox.Show("el formulario no puede quedar vacio");
-                listaAlumnos[3].Text = "Ingrese Apellido Materno !!";
-                listaAlumnos[3].Focus();
-                return;
-            }
-            if (listaAlumnos[4].Text == string.Empty)
-            {
-                MessageBox.Show("el formulario no puede quedar vacio");
-                listaAlumnos[4].Text = "Ingrese Direccion !!";
-                listaAlumnos[4].Focus();
-                return;
-            }
-           
-            if (listaAlumnos[5].Text == string.Empty)
-            {
-                MessageBox.Show("el formulario no puede quedar vacio");
-                listaAlumnos[5].Text = "Ingrese Telefono !!";
-                listaAlumnos[5].Focus();
-                return;
-
-            }
-            if (listaAlumnos[6].Text == string.Empty)
-            {
-                MessageBox.Show("el formulario no puede quedar vacio");
-                listaAlumnos[6].Text = "Ingrese Correo !!";
-                listaAlumnos[6].Focus();
-                return;
-            }
-            MessageBox.Show("Formulario Completo");
-            LimpiarFormulario();
-            */
-            //validacion con campos de texto
-            /*
-            if (listaAlumnos[0].Text == string.Empty) {
-                listaAlumnos[0].Text = "Ingrese ID !!";
-                listaAlumnos[0].Focus();
-            }
-            else
-            {
-                if (listaAlumnos[1].Text == string.Empty)
-                {   listaAlumnos[1].Text = "Ingrese Nombre ";
-                    listaAlumnos[1].Focus();
-
-                }
-                else
-                {
-                    if (listaAlumnos[2].Text == string.Empty)
-                    {
-                        listaAlumnos[2].Text = "Ingrese Apellido Paterno";
-                        listaAlumnos[2].Focus();
-                    }
-                    else
-                    {
-                        if (listaAlumnos[3].Text == string.Empty)
-                        {
-                            listaAlumnos[3].Text = "Ingresse Apellido Materno";
-                            listaAlumnos[3].Focus();
-                        }
-                        else
-                        {
-                            if (listaAlumnos[4].Text == string.Empty)
-                            {
-                                listaAlumnos[4].Text = "Ingrese Direccion";
-                                listaAlumnos[4].Focus();
-                            }
-                            else
-                            {
-                                if (listaAlumnos[5].Text == string.Empty)
-                                {
-                                    listaAlumnos[5].Text = "Ingrese Telefono";
-                                    listaAlumnos[5].Focus();
-                                }
-                                else
-                                {
-                                    if (listaAlumnos[6].Text == string.Empty)
-                                    {
-                                        listaAlumnos[6].Text = "Ingrese Correo";
-                                        listaAlumnos[6].Focus();
-                                    }
-                                   
-                                }
-                            }
-                        }
-                    }
-                }
-            }*/
-
-            //validacion con labels
             if (listaAlumnos[0].Text == string.Empty)
             {
                 MessageBox.Show("Caja de texto vacia");
@@ -322,10 +179,10 @@ namespace Logic
             //solicitaremos el arrat de imagen 
             try
             {
-              //  byte[] imagenComoArray = (byte[])dataGridView.CurrentRow.Cells[7].Value;
-                pictureBox1.Image = (Image)dataGridView.CurrentRow.Cells[7].Value;
+                byte[] imagenComoArray = (byte[])dataGridView.CurrentRow.Cells[7].Value;
+              //  pictureBox1.Image = (Image)dataGridView.CurrentRow.Cells[7].Value;
                 //asignar como propiedad
-                //pictureBox1.Image = array
+                pictureBox1.Image = ArrayToImage(imagenComoArray);
 
             }
             catch(Exception e) {
@@ -437,7 +294,66 @@ namespace Logic
             }
 
         }
+        public void buscarEstudiante(int idEstudiante)
+        {
+           Conexion conexion = new Conexion();
+            //declarar la variable que recoge el resultado de la busqueda
+            var estudiante = conexion.GetTable<Estudiante>()
+                .FirstOrDefault(e => e.Id == idEstudiante);
+            if(estudiante != null)
+            {
+                //inicializar las variales
+                accion = "Update";
+                IdEstudiante = estudiante.Id;
+                //asginar las carga a los textbox
+                listaAlumnos[0].Text = estudiante.Id.ToString();
+                listaAlumnos[1].Text = estudiante.Nombre.ToString();
+                listaAlumnos[2].Text = estudiante.ApellidoPaterno.ToString();
+                listaAlumnos[3].Text = estudiante.ApellidoPaterno.ToString();
+                listaAlumnos[4].Text = estudiante.Direccion.ToString();
+                listaAlumnos[5].Text = estudiante.Telefono.ToString();
+                listaAlumnos[6].Text = estudiante.Correo.ToString();
+                pictureBox1.Image = ArrayToImage(estudiante.Imagen);
 
+                
+            }
+            else
+            {
+                MessageBox.Show("No encontre registro");
+            }
+        }
+        //metodo para buscar por cadena
+        public void buscarEstudiantePorNombre(string nombreBuscar)
+        {
+            //insyanciar conexion
+            Conexion conexion = new Conexion();
+            //hacer la busqueda
+            var estudiante = conexion.GetTable<Estudiante>()
+               .Where(e => e.Nombre.Contains(nombreBuscar))
+               .Select(e => new
+               {
+                   e.Id,
+                   e.Nombre,
+                   e.ApellidoPaterno,
+                   e.ApellidoMaterno,
+                   e.Direccion,
+                   e.Telefono,
+                   e.Correo,
+                  // Image = ArrayToImage(e.Imagen)
+                  e.Imagen
+
+               }).ToList();
+
+            this.dataGridView.DataSource = estudiante;
+              
+            //validar si existe o no
+            if(estudiante.Count == 0)
+            {
+                MessageBox.Show("No se encontro registro "+nombreBuscar);
+            }
+           
+            
+        }
       
     }
 }
